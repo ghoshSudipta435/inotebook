@@ -1,0 +1,13 @@
+{
+  "name": "inotebook-root",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run start --prefix frontend\" \"npm run backend\"",
+    "backend": "npm run dev --prefix backend"
+  },
+  "dependencies": {
+    "concurrently": "^9.2.0",
+    "dotenv": "^17.2.0"
+  }
+}

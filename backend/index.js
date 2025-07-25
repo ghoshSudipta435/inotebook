@@ -12,7 +12,12 @@ const PORT = process.env.PORT || 4000;
 connectToMongo();
 
 // Middleware
-app.use(cors());
+// Allow frontend domain
+app.use(cors({
+    origin: "https://inotebook-frontend-jet.vercel.app/", // <-- your frontend deployed URL
+    credentials: true
+}));
+
 app.use(express.json());
 
 // Routes

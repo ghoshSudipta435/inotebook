@@ -14,7 +14,7 @@ connectToMongo();
 // Middleware
 // Allow frontend domain
 app.use(cors({
-    origin: "https://inotebook-frontend-jet.vercel.app/", // <-- your frontend deployed URL
+    origin: "https://inotebook-frontend-jet.vercel.app", // <-- your frontend deployed URL
     credentials: true
 }));
 

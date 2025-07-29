@@ -78,10 +78,13 @@ const Signup = (props) => {
                         onChange={onChange}
                         id="password"
                         name='password'
-                        minLength={5}
+                        minLength={8}
                         required
                         autoComplete="new-password"
                     />
+                    <div id="passwordHelp" className="form-text">Minimum 8 characters,
+                        at least one uppercase, lowercase, digit, and special character</div>
+
                 </div>
                 <div className="mb-3">
                     <label htmlFor="cpassword" className="form-label">Confirm Password</label>
@@ -91,10 +94,11 @@ const Signup = (props) => {
                         onChange={onChange}
                         id="cpassword"
                         name='cpassword'
-                        minLength={5}
+                        minLength={8}
                         required
                         autoComplete="new-password"
                     />
+                    <div id="passwordHelp" className="form-text">Password and Confirm Password should be same.</div>
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>

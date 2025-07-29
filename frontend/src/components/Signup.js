@@ -10,15 +10,14 @@ const Signup = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { name, email, password } = credential
-        // ✅ Check if password and confirm password match
+        const { name, email, password } = credential;
+
         if (credential.password !== credential.cpassword) {
             props.showAlert("Passwords do not match: Password and Confirm Password should be exact same", "danger");
             return;
         }
-        //API CALL
-        const response = await fetch(`${host}/api/auth/createUser`, {
 
+        const response = await fetch(`${host}/api/auth/createUser`, {
             method: "POST",
             headers: {
                 "Content-Type": 'application/json',
@@ -27,49 +26,80 @@ const Signup = (props) => {
         });
 
         const json = await response.json();
-        console.log(json)
+        console.log(json);
+
         if (json.success) {
-            //redirect
             localStorage.setItem('token', json.authtoken);
             props.showAlert("Account created successfully", "success");
-
             navigate("/");
-        }
-        else {
+        } else {
             props.showAlert("Invalid Credential", "danger");
         }
-
     }
+
     const onChange = (e) => {
         setCredential({ ...credential, [e.target.name]: e.target.value })
     }
+
     return (
         <div className='container align-center mt-5'>
-            <h2>Create an account to use to iNotebook</h2>
+            <h2>Create an account to use iNotebook</h2>
 
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">Username</label>
-                    <input type="text" className="form-control" onChange={onChange} id="name" name='name' aria-describedby="emailHelp" />
+                    <input
+                        type="text"
+                        className="form-control"
+                        onChange={onChange}
+                        id="name"
+                        name='name'
+                        autoComplete="username"
+                    />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>
-                    <input type="email" className="form-control" onChange={onChange} id="email" name='email' aria-describedby="emailHelp" />
-                    <div id="email" className="form-text">We'll never share your email with anyone else.</div>
+                    <input
+                        type="email"
+                        className="form-control"
+                        onChange={onChange}
+                        id="email"
+                        name='email'
+                        autoComplete="email"
+                        aria-describedby="emailHelp"
+                    />
+                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" className="form-control" onChange={onChange} id="password" name='password' minLength={5} required />
+                    <input
+                        type="password"
+                        className="form-control"
+                        onChange={onChange}
+                        id="password"
+                        name='password'
+                        minLength={5}
+                        required
+                        autoComplete="new-password"
+                    />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="cpassword" className="form-label">Confirm Password</label>
-                    <input type="password" className="form-control" onChange={onChange} id="cpassword" name='cpassword' minLength={5} required />
+                    <input
+                        type="password"
+                        className="form-control"
+                        onChange={onChange}
+                        id="cpassword"
+                        name='cpassword'
+                        minLength={5}
+                        required
+                        autoComplete="new-password"
+                    />
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
-
         </div>
     )
 }
 
-export default Signup
+export default Signup;

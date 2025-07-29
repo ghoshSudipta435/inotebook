@@ -17,11 +17,11 @@ const Notes = (props) => {
 
 
     useEffect(() => {
-        // if (localStorage.getItem('token')) {
+        if (localStorage.getItem('token')) {
             getNotes();
-        // } else {
-        //     navigate("/login");
-        // }
+        } else {
+            navigate("/login");
+        }
 
         // eslint-disable-next-line
     }, []);
@@ -73,11 +73,11 @@ const Notes = (props) => {
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="description" className="form-label">Description</label>
-                                    <input type="tesxt" className="form-control" id="edescription" name="edescription" value={note.edescription} onChange={onChange} />
+                                    <input type="text" className="form-control" id="edescription" name="edescription" value={note.edescription} onChange={onChange} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="tag" className="form-label">Tag</label>
-                                    <input type="tesxt" className="form-control" id="etag" name="etag" value={note.etag} onChange={onChange} />
+                                    <input type="text" className="form-control" id="etag" name="etag" value={note.etag} onChange={onChange} />
                                 </div>
                             </form>
                         </div>

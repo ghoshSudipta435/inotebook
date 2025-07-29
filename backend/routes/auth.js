@@ -11,7 +11,8 @@ const JWT_SECRET = process.env.JWT_SECRET; // Keep this safe!
 // ROUTE 1: Create a new user - POST: "/api/auth/createUser" - Public
 router.post('/createUser', [
   body('name', 'Name must be at least 3 characters').isLength({ min: 3 }).trim().escape(),
-  body('email', 'Enter a valid email').isEmail().normalizeEmail(),
+  body('email', 'Enter a valid email').isEmail().withMessage('Enter a valid email')
+    .normalizeEmail(),
   body('password', 'Password must be at least 8 characters with 1 uppercase, 1 lowercase, 1 digit & 1 symbol')
     .isStrongPassword({
       minLength: 8,
